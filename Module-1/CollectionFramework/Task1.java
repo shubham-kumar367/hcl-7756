@@ -85,21 +85,21 @@ class Student
     }
 }
 
-class MarksComparator implements Comparator<Student>
-{
-    public int compare(Student s1, Student s2)
-    {
-        return Integer.compare(s2.marks, s1.marks);
-    }
-}
-
-class AgeComparator implements Comparator<Student>
-{
-    public int compare(Student s1, Student s2)
-    {
-        return Integer.compare(s1.age, s2.age);
-    }
-}
+//class MarksComparator implements Comparator<Student>
+//{
+//    public int compare(Student s1, Student s2)
+//    {
+//        return Integer.compare(s2.marks, s1.marks);
+//    }
+//}
+//
+//class AgeComparator implements Comparator<Student>
+//{
+//    public int compare(Student s1, Student s2)
+//    {
+//        return Integer.compare(s1.age, s2.age);
+//    }
+//}
 
 public class Task1
 {
@@ -121,11 +121,12 @@ public class Task1
         System.out.println("Original List:");
         System.out.println(list);
 
-        Collections.sort(list, new MarksComparator());
+        Collections.sort(list, (s2,s1) -> Integer
+                .compare(s1.marks, s2.marks));
         System.out.println("\nSorted by Marks:");
         System.out.println(list);
 
-        Collections.sort(list, new AgeComparator());
+        Collections.sort(list, (s1,s2) -> Integer.compare(s1.age, s2.age));
         System.out.println("\nSorted by Age:");
         System.out.println(list);
     }
