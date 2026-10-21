@@ -8,6 +8,6 @@ public class EmployeeController {
 
     @GetMapping
     public String welcome() {
-        return "<h2 style ='color:red'>Welcome to HRMS App</h2>";
+        return "<h2 style ='color:red'>Welcome to HRMS App...</h2>";
     }
 }
