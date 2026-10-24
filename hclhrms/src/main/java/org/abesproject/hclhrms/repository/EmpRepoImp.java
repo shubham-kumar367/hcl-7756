@@ -1,14 +1,13 @@
+
 package org.abesproject.hclhrms.repository;
 
 import org.abesproject.hclhrms.entity.Employee;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EmpRepoImp implements EmployeeRepo{
-
+public class EmpRepoImp implements EmployeeRepo {
     List<Employee> emplist = new ArrayList<>();
 
     @Override
@@ -19,12 +18,7 @@ public class EmpRepoImp implements EmployeeRepo{
 
     @Override
     public List<Employee> addEmpbulk(List<Employee> bulkEmp) {
-        List<Employee> emplist = List.of(
-                new Employee(890L, "Ram", "Test Engineer", "Java full stack", "ram@gmail.com"),
-                new Employee(891L, "Shubham", "Test Engineer", "Java full stack", "shhub@gmail.com"),
-                new Employee(892L, "Sam", "Test Engineer", "Java full stack", "sam@gmail.com"),
-                new Employee(893L, "Xam", "Test Engineer", "Java full stack", "xam@gmail.com")
-        );
+        emplist.addAll(bulkEmp);
         return emplist;
     }
 
@@ -35,16 +29,38 @@ public class EmpRepoImp implements EmployeeRepo{
 
     @Override
     public Employee getEmpById(long empid) {
-        return emplist.stream().filter(e -> e.getEmp_id() == empid).findFirst().orElse(null);
+        return emplist.stream()
+                .filter(e -> e.getEmp_id() == empid)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
     public String deleteById(long empid) {
-        return "";
+        boolean status = emplist.removeIf(e -> e.getEmp_id() == empid);
+
+        if (status) {
+            return "Employee deleted successfully";
+        }
+
+        return "Employee is not registered with id " + empid;
     }
 
+
     @Override
-    public String updateById(long emp, Employee updatedEmp) {
-        return "";
+    public String updateById(long empid, Employee updatedEmp) {
+        Employee existingEmp = getEmpById(empid);
+
+        if (existingEmp == null) {
+            return "Employee not found";
+        }
+
+        existingEmp.setEmp_name(updatedEmp.getEmp_name());
+        existingEmp.setDesignation(updatedEmp.getDesignation());
+        existingEmp.setProgStack(updatedEmp.getProgStack());
+        existingEmp.setEmail(updatedEmp.getEmail());
+
+        return "Employee updated successfully";
     }
+
 }

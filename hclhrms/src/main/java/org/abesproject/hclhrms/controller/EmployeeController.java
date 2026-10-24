@@ -37,4 +37,14 @@ public class EmployeeController {
         return employeeServiceImp.addEmpbulk();
     }
 
+    @GetMapping("/deletebyid")
+    public String deleteById() {
+        return employeeServiceImp.deleteById();
+    }
+
+    @GetMapping("/updatebyid")
+    public String updateById() {
+        return employeeServiceImp.updateById();
+    }
+
 }
