@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -26,3 +27,26 @@ dist-ssr
 .env
 .env.*
 !.env.example
+=======
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+target/
+.idea/
+*.iml
+>>>>>>> 55205fedad8629bc092160f334cc91de82179822
