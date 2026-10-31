@@ -1,9 +1,13 @@
 package com.hcld2.jwtdemo.controller;
 
-import com.hcld2.jwtdemo.entity.Post;
-import com.hcld2.jwtdemo.repository.PostRepository;
+import com.hcld2.jwtdemo.dto.PostRequest;
+import com.hcld2.jwtdemo.dto.PostResponse;
+import com.hcld2.jwtdemo.service.PostService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +18,17 @@ import java.util.List;
 
 @AllArgsConstructor
 public class PostController {
-    private final PostRepository posts;
+    private final PostService postService;
 
     @GetMapping
-    public List<Post> all(){
-        return posts.findAllByOrderByCreatedAtDesc();
+    public List<PostResponse> all() {
+        return postService.findAll();
     }
 
     @PostMapping
-    public Post create(@Valid @RequestBody Post req, Authentication auth){
-        return posts.save(new Post(req.getTitle(),req.getContent(),auth.getName()));
+    @SecurityRequirement(name = "jwt-demo-api")
+    public ResponseEntity<PostResponse> create(@Valid @RequestBody PostRequest req, Authentication auth) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(postService.addPost(req, auth.getName()));
     }
 }
