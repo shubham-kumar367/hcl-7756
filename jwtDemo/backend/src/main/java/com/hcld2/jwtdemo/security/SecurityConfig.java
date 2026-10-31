@@ -37,7 +37,7 @@ public class SecurityConfig {
                         f->f.sameOrigin()))
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers(
-                                        "/api/v1/**","/h2-console/**","/error").permitAll()
+                                        "/api/v1/**","/h2-console/**","/error","/swagger-ui/**","/v3/api-docs/**").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/api/v1/posts/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/api/v1/posts/**").authenticated()
                                 .anyRequest().authenticated()
