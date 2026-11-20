@@ -1,3 +1,4 @@
+
 {
   "name": "jest-demo-react",
   "private": true,
@@ -21,7 +22,7 @@
     "@babel/preset-env": "^7.29.14",
     "@babel/preset-react": "^7.29.7",
     "@eslint/js": "^10.0.1",
-    "@testing-librar/jest-dom": "github:testing-library/user-event",
+    "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -35,5 +36,14 @@
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
     "vite": "^8.3.6"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.[jt]sx?$": "babel-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ]
   }
 }
