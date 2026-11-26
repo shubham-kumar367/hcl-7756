@@ -127,3 +127,73 @@ DESC marks;
 
 -- Display all tables
 SHOW TABLES;
+
+SELECT * FROM students;
+
+SELECT name,hometown FROM students;
+
+SELECT name as StudentName FROM students ;
+
+SELECT age
+FROM students
+WHERE age BETWEEN 10 AND 18;
+
+SELECT *
+FROM students
+WHERE name LIKE 'A%';
+
+SELECT *
+FROM students
+ORDER BY age DESC;
+
+SELECT *
+FROM students
+ORDER BY age DESC LIMIT 3;
+
+SELECT *
+FROM students
+ORDER BY age ASC;
+
+SELECT *
+FROM students
+ORDER BY age ASC LIMIT 4;
+
+SELECT DISTINCT hometown
+FROM students;
+
+SELECT hometown, COUNT(*) AS total_students
+FROM students
+GROUP BY hometown;
+
+SELECT * FROM marks;
+
+SELECT
+    SUM(score) AS total_marks,
+    MAX(score) AS maximum_marks,
+    MIN(score) AS minimum_marks,
+    AVG(score) AS average_marks
+FROM marks;
+
+SELECT
+    subject,
+    SUM(score) AS total_marks,
+    MAX(score) AS maximum_marks,
+    MIN(score) AS minimum_marks,
+    AVG(score) AS average_marks
+FROM marks
+GROUP BY subject;
+
+SELECT subject, AVG(score) AS average_marks
+FROM marks
+GROUP BY subject
+HAVING AVG(score) > 70;
+
+
+
+
+
+
+
+
+
+
